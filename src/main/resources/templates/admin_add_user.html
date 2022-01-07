@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--<html lang="eng" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add_edit_user.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button2.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/logout.css}">
+
+</head>
+<body>
+    <div class="container_logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="button_logout" value="Logout">LOGOUT</button>
+        </form>
+    </div>
+    <form th:method="POST" th:action="@{/admin/}" th:object="${user}">
+        <div class="container">
+            <label for="Firstname">Enter Firstname:</label>
+            <input type="text" placeholder="Enter Firstname" th:field="*{firstName}" id="Firstname" required>
+            <label for="Lastname">Enter Lastname:</label>
+            <input type="text" placeholder="Enter Lastname" th:field="*{lastName}" id="Lastname" required>
+            <label for="age">Enter age:</label>
+            <input type="text" placeholder="Enter age" th:field="*{age}" id="age" required>
+            <label for="Email">Enter Email:</label>
+            <input type="text" placeholder="Enter Email"  th:field="*{email}" id="Email" required>
+            <label for="Password">Enter Password:</label>
+            <input type="password" placeholder="Enter Password"  th:field="*{password}" id="Password" required>
+            <label for="roles">User roles (multiple select):</label>
+            <select id="roles" th:field="*{roleList}" size="10" multiple="multiple" required>
+                <option th:each="role : ${roles}"
+                        th:value="${role.id}"
+                        th:text="${role.getRoleName()}">
+                </option>
+            </select>
+            </br>
+             <button type="submit" class="button2">ADD USER</button>
+        </div>
+    </form>
+</body>
+</html>

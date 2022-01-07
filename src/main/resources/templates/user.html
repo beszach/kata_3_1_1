@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user_by_id.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button_id.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/logout.css}">
+</head>
+<body>
+    <div class="container_logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="button_logout" value="Logout">LOGOUT</button>
+        </form>
+    </div>
+    <p>User information</p>
+    <div class="container_user">
+        <table th:object="${user}" class="table table-dark table-striped">
+            <tr>
+                <th>ID</th>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <th>FIRSTNAME</th>
+                <td th:text="*{firstName}"></td>
+            </tr>
+            <tr>
+                <th>LASTNAME</th>
+                <td th:text="*{lastName}"></td>
+            </tr>
+            <tr>
+                <th>AGE</th>
+                <td th:text="*{age}"></td>
+            </tr>
+            <tr>
+                <th>EMAIL</th>
+                <td th:text="*{email}"></td>
+            </tr>
+            <tr>
+                <th>PASSWORD</th>
+                <td th:text="*{password}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

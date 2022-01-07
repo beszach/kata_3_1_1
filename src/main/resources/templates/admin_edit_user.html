@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--<html lang="eng" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add_edit_user.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button2.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/logout.css}">
+</head>
+<body>
+    <div class="container_logout">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="button_logout" value="Logout">LOGOUT</button>
+        </form>
+    </div>
+    <form th:method="POST" th:action="@{/admin/userId{id}(id = ${user.getId()})}" th:object="${user}">
+        <div class="container">
+            <label for="Firstname">Firstname:</label>
+            <input type="text" th:field="*{firstName}" id="Firstname">
+            <label for="Lastname">Lastname:</label>
+            <input type="text" th:field="*{lastName}" id="Lastname">
+            <label for="Age">Age:</label>
+            <input type="text" th:field="*{age}" id="Age">
+            <label for="Email">Email:</label>
+            <input type="text" th:field="*{email}" id="Email">
+            <label for="Password">Password:</label>
+            <input type="password" th:field="*{password}" id="Password">
+            <label for="roles">User roles (multiple select):</label>
+            <select id="roles" th:field="*{roleList}" size="10" multiple="multiple" required>
+                <option th:each="role : ${roles}"
+                        th:value="${role.id}"
+                        th:text="${role.roleName}">
+                </option>
+            </select>
+            </br>
+            <button type="submit" class="button2">EDIT</button>
+        </div>
+    </form>
+
+
+</body>
+</html>
